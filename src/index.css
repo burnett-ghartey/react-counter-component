@@ -1,13 +1,67 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+body{
+  background-image: linear-gradient(to right, #0a9396, #7fecee);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.title{
+  color: #91e7e9;
+  font-size: 2.3em;
+  
 }
+.counter_wrap{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.input_wrapper{
+  width: 80px;
+  height: 80px;
+  border-radius: .5em;
+  border: none;
+  outline: none;
+  box-shadow: 3px 3px 5px #0a9396, -1px -1px 5px #0a9396;
+  text-align: center;
+  font-size: 1.5em;
+
+  
+}
+input{
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-radius: .5em;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 2em;
+  color: #0a9396;
+  transition-property: transform, opacity;
+  text-transform: linear;
+  transition-duration: 0.25s;
+  
+}
+
+button{
+  font-size: 2rem;
+  background: none;
+  border: none;
+  outline: none;
+  color: #91e7e9;
+  cursor: pointer;
+  transition-duration: .5s;
+}
+
+button:hover{
+  transform: scale(1.3);
+}
+
+
