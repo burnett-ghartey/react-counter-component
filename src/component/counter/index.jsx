@@ -61,7 +61,7 @@ class Counter extends Component {
     return (
       <>
         <div className="counter">
-          <h2 className="title">Inc-Decr App v1</h2>
+          <h2 className="title">Inc-Decr App v2</h2>
           <div className="counter_wrap">
             <button
               onClick={() => this.handleValueChange(curValue - 1)}
