@@ -17,6 +17,7 @@ pipeline {
       }  
       steps {
           sh 'npm --version'
+          sh 'rm -r node_modules'
           sh 'npm install'
       }
     }
