@@ -55,7 +55,7 @@ pipeline {
         script {
            def scannerHome = tool 'sonar-scanner'
            withSonarQubeEnv('sonarserver') {
-             sh "${scannerHome}/bin/sonar-scanner --version"
+             sh "sudo ${scannerHome}/bin/sonar-scanner --version"
            }
         }
       } 
