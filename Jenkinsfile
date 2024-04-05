@@ -23,6 +23,9 @@ pipeline {
     }
 
     stage ('Build') {
+      environment {
+        CI=false
+      }
       steps {
         sh 'ls -ltr'
         // build the project
