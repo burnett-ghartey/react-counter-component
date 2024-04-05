@@ -41,7 +41,7 @@ pipeline {
         }
         steps {
             withSonarQubeEnv('sonarserver') {
-                echo "$scannerHome" 
+                echo "${scannerHome}" 
             }
         }
     }
