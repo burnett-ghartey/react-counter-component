@@ -12,10 +12,11 @@ pipeline {
     }
 
     stage ('Test') {
+      environment {
+        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
+      }  
       steps {
           sh 'npm --version'
-          // sh 'chown -R 115:122 "/.npm"'
-          // chmod 777 .npm
           sh 'npm install'
       }
     }
