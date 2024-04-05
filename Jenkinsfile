@@ -33,26 +33,42 @@ pipeline {
       }
   }
 
+    // stage ('Static Code Analysis') {
+    //   environment {
+    //     SONAR_URL = 'http://34.207.153.2:9000/'
+    //     NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
+    //   }
+    //   steps {
+    //      script {
+    //         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+    //             sh '''
+    //               ${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_Scanner/bin/sonar-scanner \
+    //                -Dsonar.host.url=${SONAR_URL} \
+    //                -Dsonar.login=${SONAR_AUTH_TOKEN} \
+    //                -Dsonar.projectKey=react-app \
+    //                -Dsonar.projectName=react-app
+    //             '''
+    //         }
+    //     }
+    //     } 
+    //   }
+
     stage ('Static Code Analysis') {
       environment {
-        SONAR_URL = 'http://34.207.153.2:9000/'
-        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
+        scannerHome = tool 'sonarqube-scanner'
       }
       steps {
-         script {
-            withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+            withSonarQubeEnv() {
                 sh '''
-                  ${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_Scanner/bin/sonar-scanner \
-                   -Dsonar.host.url=${SONAR_URL} \
-                   -Dsonar.login=${SONAR_AUTH_TOKEN} \
-                   -Dsonar.projectKey=react-app \
-                   -Dsonar.projectName=react-app
+                ${scannerHome}/bin/sonar-scanner \
+                -Dsonar.host.url=${SONAR_URL} \
+    //          -Dsonar.login=${SONAR_AUTH_TOKEN} \
+    //          -Dsonar.projectKey=react-app \
+    //          -Dsonar.projectName=react-app
                 '''
             }
-        }
-        }
-        
       }
+    }
     
 
     stage ('Build and Push Docker Image') {
