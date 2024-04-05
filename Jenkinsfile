@@ -36,13 +36,12 @@ pipeline {
     }
 
     stage('Static Code Analysis') {
-      // environment {
-      //       scannerHome = tool 'sonar-scanner'
-      //   }
+      environment {
+            scannerHome = tool 'sonar-scanner'
+        }
         steps {
             withSonarQubeEnv('sonarserver') {
-                sh 'cd /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin'
-                sh './sonar-scanner -Dsonar.projectKey=react-app -Dsonar.projectName=react-app'  
+                echo "$scannerHome" 
             }
         }
     }
