@@ -41,7 +41,11 @@ pipeline {
         }
         steps {
             withSonarQubeEnv('sonarserver') {
-                echo "${scannerHome}" 
+                 sh '''
+                    ${scannerHome}/bin/sonar-scanner \
+                    -D sonar.projectKey=react-app \
+                    -D sonar.projectName=react-app 
+                    '''
             }
         }
     }
