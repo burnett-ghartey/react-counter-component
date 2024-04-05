@@ -41,9 +41,10 @@ pipeline {
           def scannerHome = tool name 'sonar';
           withSonarQubeEnv('sonarserver') {
             sh '''
-            ${scannerHome}/bin/sonar - scanner \
-            -Dsonar.projectKey=react-app \ 
-            -Dsonar.projectName=react-app 
+            echo '${scannerHome}'
+            // ${scannerHome}/bin/sonar-scanner \
+            // -Dsonar.projectKey=react-app \ 
+            // -Dsonar.projectName=react-app 
               '''
           }
         }
