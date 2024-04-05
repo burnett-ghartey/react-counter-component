@@ -13,11 +13,9 @@ pipeline {
 
     stage ('Test') {
       steps {
-        script {
           sh 'npm --version'
-          sudo chown -R 115:122 "/.npm"
+          sh 'chown -R 115:122 "/.npm"'
           sh 'npm install'
-        }
       }
     }
 
