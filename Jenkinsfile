@@ -36,19 +36,23 @@ pipeline {
     }
 
     stage('Static Code Analysis') {
-      steps {
-        script {
-          def scannerHome = tool name 'sonar';
-          withSonarQubeEnv('sonarserver') {
-            sh '''
-            echo '${scannerHome}'
-            // ${scannerHome}/bin/sonar-scanner \
-            // -Dsonar.projectKey=react-app \ 
-            // -Dsonar.projectName=react-app 
-              '''
-          }
+      environment {
+            scannerHome = tool 'sonar-scanner'
         }
-      }
+        steps {
+            withSonarQubeEnv('sonarserver') {
+                sh '''
+                ${scannerHome}/bin/sonar-scanner \
+                -D sonar.projectKey=react-app \
+                -D sonar.projectName=react-app \
+                // -D sonar.projectVersion=PROJECT_VERSION \
+                // -D sonar.languages=js,ts \  // DEPRECATED, do not use this option
+                // -D sonar.sources=./src \
+                // -D sonar.test.inclusions=YOUR_INCLUSIONS_HERE \
+                // -D sonar.exclusions=YOUR_EXCLUSIONS_HERE
+                '''
+            }
+        }
     }
 
     // stage ('Build and Push Docker Image') {
