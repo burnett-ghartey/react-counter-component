@@ -38,19 +38,18 @@ pipeline {
         SONAR_URL = 'http://34.207.153.2:9000/'
         NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
       }
+      
       steps {
          script {
-            withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+             withSonarQubeEnv('sonarserver') {
                 sh '''
                   ${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_Scanner/bin/sonar-scanner \
-                   -Dsonar.host.url=${SONAR_URL} \
-                   -Dsonar.login=${SONAR_AUTH_TOKEN} \
                    -Dsonar.projectKey=react-app \
                    -Dsonar.projectName=react-app
                 '''
+              }
             }
-        }
-        } 
+          }
       }
 
 
