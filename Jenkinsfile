@@ -58,7 +58,7 @@ pipeline {
         scannerHome = tool 'sonarqube-scanner'
       }
       steps {
-        echo '${scannerHome}'
+        sh '${scannerHome}/bin/sonar-scanner --version'
             // withSonarQubeEnv('sonarserver') {
             //     sh '''
             //     ${scannerHome}/bin/sonar-scanner \
