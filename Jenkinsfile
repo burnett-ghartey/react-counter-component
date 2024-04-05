@@ -44,12 +44,7 @@ pipeline {
                 sh '''
                 ${scannerHome}/bin/sonar-scanner \
                 -D sonar.projectKey=react-app \
-                -D sonar.projectName=react-app \
-                // -D sonar.projectVersion=PROJECT_VERSION \
-                // -D sonar.languages=js,ts \  // DEPRECATED, do not use this option
-                // -D sonar.sources=./src \
-                // -D sonar.test.inclusions=YOUR_INCLUSIONS_HERE \
-                // -D sonar.exclusions=YOUR_EXCLUSIONS_HERE
+                -D sonar.projectName=react-app 
                 '''
             }
         }
