@@ -14,7 +14,7 @@ pipeline {
     stage ('Test') {
       steps {
         sh 'npm --version'
-        sh 'npm install'
+        sh 'sudo npm install'
       }
     }
 
@@ -22,7 +22,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project
-        sh 'npm run build'
+        sh 'sudo npm run build'
       }
   }
 
