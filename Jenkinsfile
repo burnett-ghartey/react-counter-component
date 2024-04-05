@@ -56,14 +56,12 @@ pipeline {
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-          echo "${JENKINS_HOME}"
-          // sh '''
-          //         bash ${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin/sonar-scanner --version
-          //          -Dsonar.host.url=${SONAR_URL} \
-          //          -Dsonar.login=${SONAR_AUTH_TOKEN} \
-          //          -Dsonar.projectKey=react-app \
-          //          -Dsonar.projectName=react-app
-          //       '''
+          sh "${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin/sonar-scanner --version"
+                // "-Dsonar.host.url=${SONAR_URL} \
+                //    -Dsonar.login=${SONAR_AUTH_TOKEN} \
+                //    -Dsonar.projectKey=react-app \
+                //    -Dsonar.projectName=react-app
+                // "
         }
       }
       
