@@ -14,7 +14,8 @@ pipeline {
     stage ('Test') {
       steps {
         sh 'npm --version'
-        sh 'sudo npm install'
+        sh 'sudo chown -R 115:122 "/.npm"'
+        sh 'npm install'
       }
     }
 
@@ -22,7 +23,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project
-        sh 'sudo npm run build'
+        sh 'npm run build'
       }
   }
 
