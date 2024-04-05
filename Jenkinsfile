@@ -36,6 +36,7 @@ pipeline {
     stage ('Static Code Analysis') {
       environment {
         SONAR_URL = 'http://34.207.153.2:9000/'
+        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
       }
       steps {
          withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
