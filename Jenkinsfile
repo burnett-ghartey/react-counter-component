@@ -36,9 +36,9 @@ pipeline {
     }
 
     stage('Static Code Analysis') {
-      environment {
-            scannerHome = tool 'sonar-scanner'
-        }
+      // environment {
+      //       scannerHome = tool 'sonar-scanner'
+      //   }
         steps {
             withSonarQubeEnv('sonarserver') {
                 sh '''
