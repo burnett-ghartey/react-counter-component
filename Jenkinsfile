@@ -54,6 +54,24 @@ pipeline {
       }
     }
 
-    stage ('')
+    stage ('Update Deployment File') {
+      environment {
+        GIT_REPO_NAME = 'react-counter-component'
+        GIT_USER_NAME = 'burnett-ghartey'
+      }
+      steps {
+        withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
+           sh '''
+                    git config user.email "00burnettghartey@gmail.com"
+                    git config user.name "Burnett Ghartey"
+                    BUILD_NUMBER=${BUILD_NUMBER}
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment-manifests/deployment.yml
+                    git add deployment-manifests/deployment.yml
+                    git commit -m "Update deployment image to version ${BUILD_NUMBER}"
+                    git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                '''
+        }
+      }
+    }
       
 }
