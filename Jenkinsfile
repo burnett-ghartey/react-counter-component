@@ -42,9 +42,9 @@ pipeline {
         steps {
             withSonarQubeEnv('sonarserver') {
                 sh '''
-                ${scannerHome}/bin/sonar-scanner \
-                -D sonar.projectKey=react-app \
-                -D sonar.projectName=react-app 
+                cd /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin
+                // ./sonar-scanner -Dsonar.projectKey=react-app -Dsonar.projectName=react-app 
+                ./sonar-scanner --version
                 '''
             }
         }
