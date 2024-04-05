@@ -54,18 +54,15 @@ pipeline {
     //   }
 
     stage ('Static Code Analysis') {
-      environment {
-        scannerHome = tool 'sonar'
-      }
       steps {
-        sh '${scannerHome}/bin/sonar-scanner --version'
-            // withSonarQubeEnv('sonarserver') {
-            //     sh '''
-            //     ${scannerHome}/bin/sonar-scanner \
-            //     -Dsonar.projectKey=react-app \
-            //     -Dsonar.projectName=react-app
-            //     '''
-            // }
+        def sonarqubeScannerHome = tool name: 'sonar'
+        withSonarQubeEnv('sonarserver') {
+            sh '''
+            ${scannerHome}/bin/sonar-scanner \
+            -Dsonar.projectKey=react-app \
+            -Dsonar.projectName=react-app
+            '''
+        }
       }
     }
     
