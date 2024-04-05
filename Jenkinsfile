@@ -41,12 +41,11 @@ pipeline {
         }
         steps {
             withSonarQubeEnv('sonarserver') {
-              echo "${scannerHome}"
-                 // sh '''
-                 //    /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin/sonar-scanner \
-                 //    -D sonar.projectKey=react-app \
-                 //    -D sonar.projectName=react-app 
-                 //    '''
+                 sh '''
+                    ${scannerHome}/bin/sonar-scanner \
+                    -D sonar.projectKey=react-app \
+                    -D sonar.projectName=react-app 
+                    '''
             }
         }
     }
