@@ -12,9 +12,9 @@ pipeline {
     }
 
     stage ('Test') {
-      environment {
-        NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
-      }  
+      // environment {
+      //   NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
+      // }  
       steps {
           sh 'npm --version'
           sh 'rm -r node_modules'
