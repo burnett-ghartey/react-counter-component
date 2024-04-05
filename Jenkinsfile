@@ -51,10 +51,14 @@ pipeline {
     // }
 
     stage ('static code analysis') {
-      def scannerHome = tool 'sonar-scanner'
-      withSonarQubeEnv('sonarserver') {
-        sh "${scannerHome}/bin/sonar-scanner --version"
-      }
+      steps {
+        script {
+           def scannerHome = tool 'sonar-scanner'
+           withSonarQubeEnv('sonarserver') {
+             sh "${scannerHome}/bin/sonar-scanner --version"
+           }
+        }
+      } 
     }
 
     
