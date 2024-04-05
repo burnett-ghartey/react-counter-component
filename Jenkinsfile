@@ -15,7 +15,8 @@ pipeline {
       steps {
           sh 'npm --version'
           // sh 'chown -R 115:122 "/.npm"'
-          sh 'sudo npm install'
+          // chmod 777 .npm
+          sh 'npm install'
       }
     }
 
