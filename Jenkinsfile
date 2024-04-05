@@ -55,7 +55,7 @@ pipeline {
 
     stage ('Static Code Analysis') {
       environment {
-        scannerHome = tool 'sonarqube-scanner'
+        scannerHome = tool 'sonar'
       }
       steps {
         sh '${scannerHome}/bin/sonar-scanner --version'
