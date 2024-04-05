@@ -35,19 +35,26 @@ pipeline {
       }
     }
 
-    stage('Static Code Analysis') {
-      environment {
-            scannerHome = tool 'sonar-scanner'
-        }
-        steps {
-            withSonarQubeEnv('sonarserver') {
-                 sh '''
-                    ${scannerHome}/bin/sonar-scanner \
-                    -D sonar.projectKey=react-app \
-                    -D sonar.projectName=react-app 
-                    '''
-            }
-        }
+    // stage('Static Code Analysis') {
+    //   environment {
+    //         scannerHome = tool 'sonar-scanner'
+    //     }
+    //     steps {
+    //         withSonarQubeEnv('sonarserver') {
+    //              sh '''
+    //                 ${scannerHome}/bin/sonar-scanner \
+    //                 -D sonar.projectKey=react-app \
+    //                 -D sonar.projectName=react-app 
+    //                 '''
+    //         }
+    //     }
+    // }
+
+    stage ('static code analysis') {
+      def scannerHome = tool 'sonar-scanner'
+      withSonarQubeEnv('sonarserver') {
+        sh "${scannerHome}/bin/sonar-scanner --version"
+      }
     }
 
     
