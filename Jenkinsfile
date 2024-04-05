@@ -53,21 +53,24 @@ pipeline {
     //     } 
     //   }
 
-    stage ('Static Code Analysis') {
-      steps {
+  stage("SonarQube analysis") {
+    steps {
         script {
-          def sonarqubeScannerHome = tool name: 'sonar'
-          withSonarQubeEnv('sonarserver') {
-            sh '''
-            ${scannerHome}/bin/sonar-scanner \
-            -Dsonar.projectKey=react-app \
-            -Dsonar.projectName=react-app
-            '''
+          withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+             withSonarQubeEnv('Sonarserver') {
+                sh '''
+                  ${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_Scanner/bin/sonar-scanner \
+                   -Dsonar.host.url=http://34.207.153.2:9000/ \
+                   -Dsonar.login=${SONAR_AUTH_TOKEN} \
+                   -Dsonar.projectKey=react-app \
+                   -Dsonar.projectName=react-app
+                '''
+            }
           }
+           
         }
-        
-      }
     }
+}
     
 
     // stage ('Build and Push Docker Image') {
