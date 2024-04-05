@@ -39,13 +39,21 @@ pipeline {
         NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
       }
       steps {
-         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
-          sh 'npm install -D sonarqube-scanner'
-          sh 'npm sonar-scanner -Dsonar.host.url=${SONAR_URL} -Dsonar.token=${SONAR_AUTH_TOKEN}'
+         script {
+            withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+                sh '''
+                  ${JENKINS_HOME}/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube_Scanner/bin/sonar-scanner \
+                   -Dsonar.host.url=${SONAR_URL} \
+                   -Dsonar.login=${SONAR_AUTH_TOKEN} \
+                   -Dsonar.projectKey=react-app \
+                   -Dsonar.projectName=react-app
+                '''
+            }
+        }
         }
         
       }
-    }
+    
 
     stage ('Build and Push Docker Image') {
       environment {
