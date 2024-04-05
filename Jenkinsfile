@@ -1,57 +1,54 @@
 pipeline {
   agent {
-    docker { image 'node:16'}
+    docker {
+      image 'node:16'
+    }
   }
 
   stages {
-    stage ('Checkout') {
+    stage('Checkout') {
       steps {
         echo 'passed'
         // git branch: 'main', url: 'https://github.com/burnett-ghartey/react-counter-component.git'
       }
     }
 
-    stage ('Test') {
+    stage('Test') {
       environment {
         NPM_CONFIG_CACHE = "${WORKSPACE}/.npm"
-      }  
+      }
       steps {
-          sh 'npm --version'
-          sh 'rm -r node_modules'
-          sh 'npm install'
+        sh 'npm --version'
+        sh 'rm -r node_modules'
+        sh 'npm install'
       }
     }
 
-    stage ('Build') {
+    stage('Build') {
       environment {
-        CI=false
+        CI = false
       }
       steps {
         sh 'ls -ltr'
         // build the project
         sh 'npm run build'
       }
-  }
+    }
 
-    stage ('Static Code Analysis') {
+    stage('Static Code Analysis') {
       steps {
-         script {
-           def scannerHome = tool name 'sonar';
-           echo '${scannerHome}'
-             // withSonarQubeEnv('sonarserver') {
-             //    sh '''
-             //      ${scannerHome}/bin/sonar-scanner \
-             //       -Dsonar.projectKey=react-app \
-             //       -Dsonar.projectName=react-app
-             //    '''
-             //  }
-            }
+        script {
+          def scannerHome = tool name 'sonar';
+          withSonarQubeEnv('sonarserver') {
+            sh '''
+            ${scannerHome}/bin/sonar - scanner \
+            -Dsonar.projectKey=react-app \ 
+            -Dsonar.projectName=react-app 
+              '''
           }
+        }
       }
-
-
-
-    
+    }
 
     // stage ('Build and Push Docker Image') {
     //   environment {
@@ -66,7 +63,7 @@ pipeline {
     //               dockerImage.push()
     //       }
     //     }
-          
+
     //   }
     // }
 
@@ -89,6 +86,6 @@ pipeline {
     //     }
     //   }
     // }
-      
+
   }
 }
