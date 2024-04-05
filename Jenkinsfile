@@ -58,7 +58,7 @@ pipeline {
         scannerHome = tool 'sonarqube-scanner'
       }
       steps {
-            withSonarQubeEnv() {
+            withSonarQubeEnv('sonarserver') {
                 sh '''
                 ${scannerHome}/bin/sonar-scanner \
                 -Dsonar.host.url=${SONAR_URL} \
