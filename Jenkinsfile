@@ -61,8 +61,6 @@ pipeline {
             withSonarQubeEnv('sonarserver') {
                 sh '''
                 ${scannerHome}/bin/sonar-scanner \
-                -Dsonar.host.url=${SONAR_URL} \
-    //          -Dsonar.login=${SONAR_AUTH_TOKEN} \
     //          -Dsonar.projectKey=react-app \
     //          -Dsonar.projectName=react-app
                 '''
