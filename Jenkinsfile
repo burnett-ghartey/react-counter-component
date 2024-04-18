@@ -50,16 +50,16 @@ pipeline {
     //     }
     // }
 
-    stage ('static code analysis') {
-      steps {
-        script {
-           def scannerHome = tool 'sonar-scanner'
-           withSonarQubeEnv('sonarserver') {
-             sh "${scannerHome}/bin/sonar-scanner --version"
-           }
-        }
-      } 
-    }
+    // stage ('static code analysis') {
+    //   steps {
+    //     script {
+    //        def scannerHome = tool 'sonar-scanner'
+    //        withSonarQubeEnv('sonarserver') {
+    //          sh "${scannerHome}/bin/sonar-scanner --version"
+    //        }
+    //     }
+    //   } 
+    // }
 
     
 
