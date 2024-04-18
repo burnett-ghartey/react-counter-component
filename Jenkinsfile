@@ -75,10 +75,10 @@ pipeline {
         }
       }
       
-      environment {
-        DOCKER_IMAGE = 'oneghartey/react-cicd:${BUILD_NUMBER}'
-        REGISTRY_CREDENTIALS = credentials('docker-cred')
-      }
+      // environment {
+      //   DOCKER_IMAGE = 'oneghartey/react-cicd:${BUILD_NUMBER}'
+      //   REGISTRY_CREDENTIALS = credentials('docker-cred')
+      // }
       steps {
         script {
           sh 'docker --version'
