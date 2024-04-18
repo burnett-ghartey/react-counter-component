@@ -81,7 +81,7 @@ pipeline {
       }
       steps {
         script {
-          echo ${DOCKER_IMAGE}
+          echo "${DOCKER_IMAGE}"
           sh 'docker --version'
           // sh 'docker build -t ${DOCKER_IMAGE} .'
           // def dockerImage = docker.image("${DOCKER_IMAGE}")
