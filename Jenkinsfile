@@ -65,6 +65,8 @@ pipeline {
     
 
     stage ('Build and Push Docker Image') {
+      agent any
+      
       environment {
         DOCKER_IMAGE = 'oneghartey/react-cicd:${BUILD_NUMBER}'
         REGISTRY_CREDENTIALS = credentials('docker-cred')
