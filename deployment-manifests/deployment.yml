@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: react-app
-        image: oneghartey/react-cicd:replaceImageTag
+        image: oneghartey/react-cicd:3
         ports:
         - containerPort: 3000
   
