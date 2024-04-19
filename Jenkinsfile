@@ -97,7 +97,7 @@ pipeline {
       }
       steps {
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                sh '''
+                sh """
                     git config user.email "00burnettghartey@gmail.com"
                     git config user.name "Burnett Ghartey"
                     BUILD_NUMBER=${BUILD_NUMBER}
@@ -105,7 +105,7 @@ pipeline {
                     git add deployment-manifests/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                '''
+                """
         }
       }
     }
